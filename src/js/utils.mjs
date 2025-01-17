@@ -25,3 +25,12 @@ export function setClick(selector, callback) {
   });
   qs(selector).addEventListener("click", callback);
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list,count,position = "afterbegin",clear = false) {
+  const htmlStrings = list.filter((item,index)=>index<count).map(templateFn);
+  // if clear is true we need to clear out the contents of the parent.
+  if (clear) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, htmlStrings.join(""));
+}
