@@ -33,3 +33,18 @@ export function getParam(param){
 
   return product;
 }
+
+export function renderListWithTemplate(templateFn, parentElement, list, position="afterbegin", clear=false){
+        
+        //Create html for list
+        const items = list.map((item)=>templateFn(item));
+        const html = items.join("");
+
+        //clear contents of parent if requested
+        if(clear)
+          while(parentElement.firstChild)
+            parentElement.removeChild(parentElement.lastChild)
+
+        //Add html for list to parent element
+        parentElement.insertAdjacentHTML(position,html);
+}
