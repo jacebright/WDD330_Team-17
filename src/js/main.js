@@ -6,3 +6,7 @@ const element = document.querySelector(".product-list");
 const listing = new ProductList("Tents", dataSource, element);
 
 listing.init();
+
+import Alert from "./Alert";
+
+Alert.renderAlerts();
