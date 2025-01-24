@@ -1,43 +1,37 @@
-const path = '../json/alerts.json';
+const path = "../json/alerts.json";
 
 export default class Alert {
+  static async renderAlerts() {
+    //fetch alert data from alerts.json
+    const response = await fetch(path);
 
-    static async renderAlerts() {
+    //Check that response is valid
+    if (!response.ok) throw new Error("Bad Response");
 
-        //fetch alert data from alerts.json
-        const response = await fetch(path);
+    //Get the list of alerts from the response
+    const alerts = await response.json();
 
-        //Check that response is valid
-        if (!response.ok)
-            throw new Error("Bad Response");
+    //Check if there is anything in the list of alerts
+    if (alerts.length < 1) return;
 
-        //Get the list of alerts from the response
-        const alerts = await response.json();
+    //Create the alert-list section
+    const section = document.createElement("section");
+    section.classList.add("alert-list");
 
-        //Check if there is anything in the list of alerts
-        if (alerts.length < 1)
-            return;
+    alerts.forEach((alert) => {
+      //Create <p> element for each alert
+      const message = document.createElement("p");
+      message.innerText = alert.message;
 
-        //Create the alert-list section
-        const section = document.createElement("section");
-        section.classList.add("alert-list");
+      //Style the element
+      message.style.backgroundColor = alert.background;
+      message.style.color = alert.color;
 
+      //Add message to alert list
+      section.appendChild(message);
+    });
 
-        alerts.forEach((alert) => {
-            //Create <p> element for each alert
-            const message = document.createElement("p");
-            message.innerText = alert.message;
-
-            //Style the element
-            message.style.backgroundColor = alert.background;
-            message.style.color = alert.color;
-
-            //Add message to alert list
-            section.appendChild(message);
-        })
-
-        //Prepend alert list to main element
-        document.querySelector('main').prepend(section);
-    }
-
+    //Prepend alert list to main element
+    document.querySelector("main").prepend(section);
+  }
 }
