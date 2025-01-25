@@ -220,3 +220,18 @@ footer {
   font-size: var(--small-font);
   padding: 1em;
 }
+
+.fourgrid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.fourgrid a{
+  text-decoration: none;
+  color:black
+}
+
+.fourgrid a img{
+  width: 75%;
+}
