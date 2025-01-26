@@ -1,16 +1,16 @@
 import { renderListWithTemplate } from "./utils.mjs";
 
 function productCardTemplate(product) {
-  return `<li class="product-card">
+  return `<div class="product-card">
   <a href="product_pages/index.html?product=${product.Id}">
   <img
-    src="${product.Image}"
+    src="${product.Images.PrimaryMedium}"
     alt="Image of ${product.Name}"
   />
   <h3 class="card__brand">${product.Brand.Name}</h3>
   <h2 class="card__name">${product.Name}</h2>
   <p class="product-card__price">$${product.FinalPrice}</p></a>
-</li>`;
+</div>`;
 }
 
 export default class ProductList {
@@ -23,14 +23,24 @@ export default class ProductList {
   }
   async init() {
     // our dataSource will return a Promise...so we can use await to resolve it.
-    const list = await this.dataSource.getData();
+    /* const list = await this.dataSource.getData(); */
+    const list = await this.dataSource.getData(this.category);
+    
 
-    const filteredList = list.filter((tent) => tent.Id != "989CG" && tent.Id != "880RT");
+    /* getData() {
+      return fetch(this.path)
+        .then(convertToJson)
+        .then((data) => data);
+    } */
+
+    /* const filteredList = list.filter((tent) => tent.Id != "989CG" && tent.Id != "880RT"); */
     // render the list
-    this.renderList(filteredList);
+    this.renderList(list);
+    document.querySelector("title").innerHTML = this.category;
   }
   // render after doing the first stretch
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
+    
   }
 }
