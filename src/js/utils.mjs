@@ -33,3 +33,19 @@ export function getParam(param){
 
   return product;
 }
+
+export function renderListWithTemplate(
+  templateFn, 
+  parentElement, 
+  list, 
+  position="afterbegin", 
+  clear = false
+) {
+  let fooList = list.map(templateFn);
+
+  if (clear == true) {
+    parentElement.innerHTML = "";
+  }
+  parentElement.insertAdjacentHTML(position, fooList.join(""));
+
+}
