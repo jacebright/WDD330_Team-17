@@ -26,7 +26,10 @@ export default class ShoppingCart {
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.storageKey);
-    const htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    let htmlItems = [];
+    if (cartItems !== null) {
+      htmlItems = cartItems.map((item) => cartItemTemplate(item));
+    }
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
 }
 }
