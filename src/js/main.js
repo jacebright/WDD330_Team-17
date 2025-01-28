@@ -1,0 +1,1 @@
+import productdata, { getProducts } from './productdata.js';
