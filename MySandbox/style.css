@@ -1,0 +1,52 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+  }
+
+
+.box{
+    background-color: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    width: 150px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: myanima 2s infinite, color-change 4s infinite, shadow-pulse 2s infinite;
+}
+
+@keyframes myanima {
+    0%, 100% {
+        transform: translateY(0) rotate(0deg);
+      }
+      50% {
+        transform: translateY(-100px) rotate(180deg);
+      }
+  }
+
+  @keyframes color-change {
+    0% {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    }
+    33% {
+      background: linear-gradient(45deg, #4ecdc4, #ffe66d);
+    }
+    66% {
+      background: linear-gradient(45deg, #ffe66d, #ff6b6b);
+    }
+    100% {
+      background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+    }
+  }
+
+  @keyframes shadow-pulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.4);
+    }
+  }
+  
