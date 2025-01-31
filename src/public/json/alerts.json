@@ -1,0 +1,12 @@
+[
+  {
+    "message": "This is a red alert.",
+    "background": "red",
+    "color": "white"
+  },
+  {
+    "message": "This is NOT a red alert",
+    "background": "lightgray",
+    "color": "red"
+  }
+]
