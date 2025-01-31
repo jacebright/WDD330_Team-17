@@ -175,9 +175,9 @@ button {
   align-items: center;
 }
 
-.cart-card__remove{
-  grid-row:0;
-  grid-column:4;
+.cart-card__remove {
+  grid-row: 0;
+  grid-column: 4;
 }
 
 .cart-card__image {
@@ -242,4 +242,18 @@ figure {
 
 figure {
   text-align: center;
+}
+
+/* cart superscript */
+#cartSuper {
+  text-decoration: none;
+}
+
+#superscript {
+  position: absolute;
+  top: 4px;
+  right: 0.5px;
+  background-color: rgb(240, 160, 131);
+  padding: 0.25rem;
+  border-radius: 100%;
 }

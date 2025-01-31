@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 
 function cartItemTemplate(item) {
@@ -55,6 +55,7 @@ export default class ShoppingCart {
         
         //Rerender List
         this.renderCartContents();
+        updateCartSuperscript();
         
         //Update Cart Total
         if (items.length > 0) 
