@@ -14,7 +14,7 @@ function productCardTemplate(product) {
   };
 
   return `<div class="product-card">
-  <a href="product_pages/index.html?product=${product.Id}">
+  <a href="/product_pages/index.html?product=${product.Id}">
   <img
     src="${product.Images.PrimaryMedium}"
     alt="Image of ${product.Name}"
