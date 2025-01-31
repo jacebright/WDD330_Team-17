@@ -230,3 +230,16 @@ footer {
 .hide {
   display: none;
 }
+
+/* category images */
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+figure {
+  width: 80%;
+}
+
+figure {
+  text-align: center;
+}
