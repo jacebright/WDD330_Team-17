@@ -23,13 +23,18 @@ export default class ShoppingCart {
   constructor(storageKey, parentSelector) {
     this.storageKey = storageKey;
     this.parentSelector = parentSelector;
+    this.total = 0;
   }
   renderCartContents() {
     const cartItems = getLocalStorage(this.storageKey);
     let htmlItems = [];
     if (cartItems !== null) {
       htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      cartItems.forEach(element => {
+        this.total += element.FinalPrice;
+      });
     }
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
 }
+  
 }
