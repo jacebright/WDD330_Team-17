@@ -26,6 +26,22 @@ export default class ShoppingCart {
     this.parentSelector = parentSelector;
     this.total = 0;
   }
+
+  init() {
+
+    const cartItems = getLocalStorage(this.storageKey);
+    let htmlItems = [];
+    this.total = 0;
+    if (cartItems !== null) {
+      htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      cartItems.forEach(element => {
+        this.total += element.FinalPrice;
+      });
+    }
+
+   }
+
+
   renderCartContents() {
     const cartItems = getLocalStorage(this.storageKey);
     let htmlItems = [];
@@ -64,4 +80,28 @@ export default class ShoppingCart {
       })
     })
 }
+
+  tax() {
+    return this.total*0.06;
+  }
+
+  estimate() {
+    const items = getLocalStorage(this.storageKey);
+    const numberItems = items.length;
+
+    return 10 + (numberItems-1)*2;
+  }
+
+  orderTotal() {
+
+    const cartTax = this.tax();
+    const cartEstim = this.estimate();
+
+    return this.total + cartTax + cartEstim;
+
+  }
+
+  
+
+
 }

@@ -8,7 +8,7 @@
 
     <title>Sleep Outside | Checkout</title>
 
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="../css/style.css" />
     <script src="../js/checkout.js" type="module"></script>
   </head>
 
@@ -19,6 +19,44 @@
       <section class="products">
         <h2>Review & Place your Order</h2>
       </section>
+
+      <section class="summary">
+        
+      </section>
+
+      <form action="./thankyou.html">
+        <fieldset>
+          <legend>Customer Name</legend>
+          <label>First Name <input type="text" name="fname" required></label>
+          
+          <label>Second Name <input type="text" name="lname" required></label>
+          
+        </fieldset>
+        <fieldset>
+          <legend>Address</legend>
+          <label>Street Address: <input type="text" name="street" required></label>
+          
+          <label>City<input type="text" name="city" required></label>
+          
+          <label>State <input type="text" name="state" required></label>
+          
+          <label>Zip Code <input type="text" name="zip" required></label>         
+
+        </fieldset>
+        <fieldset>
+          <legend>Payment</legend>
+          <label> Credit Card Number:<input type="text" name="street" required></label>
+          
+          <label>Expiration Date:<input type="text" name="city" required></label>
+          
+          <label>Security Code:<input type="text" name="state" required></label>
+          
+        </fieldset>
+
+        <button type="submit" >Checkout</button>
+      </form>
+
+
     </main>
 
     <footer id="page-footer"></footer>
