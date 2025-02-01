@@ -169,10 +169,15 @@ button {
 /* Start cart list card styles */
 .cart-card {
   display: grid;
-  grid-template-columns: 25% auto 15%;
+  grid-template-columns: 25% auto 15% 48px;
   font-size: var(--small-font);
   /* max-height: 120px; */
   align-items: center;
+}
+
+.cart-card__remove{
+  grid-row:0;
+  grid-column:4;
 }
 
 .cart-card__image {
@@ -219,4 +224,22 @@ button {
 footer {
   font-size: var(--small-font);
   padding: 1em;
+}
+
+/* hidden */
+.hide {
+  display: none;
+}
+
+/* category images */
+.categories {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+figure {
+  width: 80%;
+}
+
+figure {
+  text-align: center;
 }
