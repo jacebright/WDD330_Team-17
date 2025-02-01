@@ -29,10 +29,10 @@ export default class ShoppingCart {
   init() {
 
     const cartItems = getLocalStorage(this.storageKey);
-    let htmlItems = [];
+    // let htmlItems = [];
     this.total = 0;
     if (cartItems !== null) {
-      htmlItems = cartItems.map((item) => cartItemTemplate(item));
+      // htmlItems = cartItems.map((item) => cartItemTemplate(item));
       cartItems.forEach(element => {
         this.total += element.FinalPrice;
       });
@@ -52,11 +52,8 @@ export default class ShoppingCart {
         const currentCountForValue = countOfEachArrayValue[value.Id] ?? 0;
         countOfEachArrayValue[value.Id] = currentCountForValue + 1;
       });
-      console.log('countOfEachArrayValue: ', countOfEachArrayValue);
-      const key = 'Id';
+      const key = "Id";
       const unique = [...new Map(cartItems.map(item =>[item[key], item])).values()];
-      // console.log(unique);
-      // console.log(cartItems);
       htmlItems = unique.map((item) => cartItemTemplate(item,countOfEachArrayValue[item.Id]));
       cartItems.forEach(element => {
         this.total += element.FinalPrice;
@@ -92,14 +89,14 @@ export default class ShoppingCart {
 }
 
   tax() {
-    return this.total*0.06;
+    return this.total * 0.06;
   }
 
   estimate() {
     const items = getLocalStorage(this.storageKey);
     const numberItems = items.length;
 
-    return 10 + (numberItems-1)*2;
+    return 10 + (numberItems - 1) * 2;
   }
 
   orderTotal() {

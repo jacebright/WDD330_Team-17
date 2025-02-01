@@ -175,9 +175,9 @@ button {
   align-items: center;
 }
 
-.cart-card__remove{
-  grid-row:0;
-  grid-column:4;
+.cart-card__remove {
+  grid-row: 0;
+  grid-column: 4;
 }
 
 .cart-card__image {
