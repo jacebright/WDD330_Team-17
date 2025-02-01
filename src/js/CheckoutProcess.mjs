@@ -3,8 +3,8 @@ import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
 function formDataToJSON(formElement) {
-  const formData = new FormData(formElement),
-    convertedJSON = {};
+  const formData = new FormData(formElement);
+  const convertedJSON = {};
 
   formData.forEach(function (value, key) {
     convertedJSON[key] = value;
@@ -15,7 +15,7 @@ function formDataToJSON(formElement) {
 
 function packageItems(items) {
   const simplifiedItems = items.map((item) => {
-    console.log(item);
+    // console.log(item);
     return {
       id: item.Id,
       price: item.FinalPrice,
@@ -74,7 +74,7 @@ export default class CheckoutProcess {
     orderTotal.innerText = "$" + this.orderTotal;
   }
   async checkout() {
-    const formElement = document.forms["checkout"];
+    const formElement = document.forms[0];
 
     const json = formDataToJSON(formElement);
     // add totals, and item details
@@ -83,7 +83,7 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
+    // console.log(json);
     try {
       const res = await services.checkout(json);
       console.log(res);

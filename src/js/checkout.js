@@ -1,20 +1,17 @@
 import { loadHeaderFooter } from "./utils.mjs";
-import ShoppingCart from "./ShoppingCart.mjs";
-
-const cart = new ShoppingCart("so-cart", ".product-list");
-cart.init();
-
-function shoppingCartSummary (cart) {
-
-    return `<p>Subtotal: ${cart.total}</p>
-        <p>Shipping Estimate: ${cart.estimate()}</p>
-        <p>Tax: ${cart.tax()}</p>
-        <p>Order Total: ${cart.orderTotal()}</p>`;
-}
-
-const summaryElement = document.querySelector(".summary");
-summaryElement.innerHTML = shoppingCartSummary(cart);
-
+import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
 
+const myCheckout = new CheckoutProcess("so-cart", ".checkout-summary");
+myCheckout.init();
+
+document
+  .querySelector("#zip")
+  .addEventListener("blur", myCheckout.calculateOrdertotal.bind(myCheckout));
+// listening for click on the button
+document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
+  e.preventDefault();
+
+  myCheckout.checkout();
+});
