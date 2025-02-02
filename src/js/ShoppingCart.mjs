@@ -1,7 +1,7 @@
 import { getLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 
-function cartItemTemplate(item,x) {
+function cartItemTemplate(item, x) {
   const newItem = `<li class="cart-card divider">
   <a href="#" class="cart-card__image">
     <img
@@ -82,16 +82,17 @@ export default class ShoppingCart {
         
         //Update Cart Total
         if (items.length > 0) 
-          document.getElementsByClassName("cart-total")[0].innerHTML = `Total: $${this.total}`;
-        else
+          document.getElementsByClassName("cart-total")[0].innerHTML = `Total: $${this.total.toFixed(2)}`;
+        else {
           document.querySelector(".cart-footer").classList.add("hide");
           document.querySelector(".empty").classList.remove("hide");
+        }
       })
     })
 }
 
   tax() {
-    return this.total * 0.06;
+    return (this.total * 0.06).toFixed(2);
   }
 
   estimate() {
@@ -106,7 +107,7 @@ export default class ShoppingCart {
     const cartTax = this.tax();
     const cartEstim = this.estimate();
 
-    return this.total + cartTax + cartEstim;
+    return (this.total + cartTax + cartEstim).toFixed(2);
 
   }
 
