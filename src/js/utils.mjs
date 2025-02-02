@@ -77,6 +77,21 @@ export async function loadHeaderFooter(){
 
   renderWithTemplate(headerTemplate,header);
   renderWithTemplate(footerTemplate, footer);
+
+
+  updateCartSuperscript();
+  
+}
+
+export function updateCartSuperscript() {
+  const superscript = document.getElementById("superscript");
+  const json = getLocalStorage("so-cart");
+  if (!json) {
+    superscript.innerHTML = 0;
+  }
+  else {
+    superscript.innerHTML = Object.keys(json).length;
+  }
 }
 
 export function alertMessage(message, scroll = true) {
