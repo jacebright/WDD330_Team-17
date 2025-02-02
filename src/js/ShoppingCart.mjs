@@ -84,6 +84,7 @@ export default class ShoppingCart {
           document.getElementsByClassName("cart-total")[0].innerHTML = `Total: $${this.total}`;
         else
           document.querySelector(".cart-footer").classList.add("hide");
+          document.querySelector(".empty").classList.remove("hide");
       })
     })
 }

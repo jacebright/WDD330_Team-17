@@ -1,4 +1,4 @@
-import { getLocalStorage } from "./utils.mjs";
+import { getLocalStorage, alertMessage, removeAllAlerts, } from "./utils.mjs";
 import ExternalServices from "./ExternalServices.mjs";
 
 const services = new ExternalServices();
@@ -14,15 +14,12 @@ function formDataToJSON(formElement) {
 }
 
 function packageItems(items) {
-  const simplifiedItems = items.map((item) => {
-    // console.log(item);
-    return {
+  const simplifiedItems = items.map((item) => ({
       id: item.Id,
       price: item.FinalPrice,
       name: item.Name,
       quantity: 1,
-    };
-  });
+    }));
   return simplifiedItems;
 }
 
@@ -74,7 +71,7 @@ export default class CheckoutProcess {
     orderTotal.innerText = "$" + this.orderTotal;
   }
   async checkout() {
-    const formElement = document.forms[0];
+    const formElement = document.forms["checkout"];
 
     const json = formDataToJSON(formElement);
     // add totals, and item details
@@ -83,12 +80,16 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    // console.log(json);
     try {
-      const res = await services.checkout(json);
-      console.log(res);
+      await services.checkout(json);
+      localStorage.removeItem(this.key);
+      location.assign("/checkout/success.html");
     } catch (err) {
-      console.log(err);
+      removeAllAlerts();
+      for (let message in err.message) {
+        alertMessage(err.message[message]);
+      }
+      
     }
   }
 }
