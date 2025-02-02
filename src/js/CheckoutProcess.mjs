@@ -80,11 +80,9 @@ export default class CheckoutProcess {
     json.tax = this.tax;
     json.shipping = this.shipping;
     json.items = packageItems(this.list);
-    console.log(json);
     try {
-      const res = await services.checkout(json);
-      console.log(res);
-      localStorage.setItem(this.key, []);
+      await services.checkout(json);
+      localStorage.removeItem(this.key);
       location.assign("/checkout/success.html");
     } catch (err) {
       removeAllAlerts();
