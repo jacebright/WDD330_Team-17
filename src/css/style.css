@@ -244,6 +244,7 @@ figure {
   text-align: center;
 }
 
+
 /* cart superscript */
 #cartSuper {
   text-decoration: none;
@@ -256,4 +257,22 @@ figure {
   background-color: rgb(240, 160, 131);
   padding: 0.25rem;
   border-radius: 100%;
+
+/* alert styles */
+.alert {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+  background-color: var(--primary-color);
+  border: 1px solid darkorange;
+}
+.alert > p {
+  margin: 0;
+}
+
+/* empty cart style */
+.empty h2 {
+  text-align: center;
+
 }
