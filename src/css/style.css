@@ -207,6 +207,32 @@ button {
   grid-column: 3;
 }
 
+.alert{
+  display: flex;
+  align-items: center;
+  justify-content:space-between;
+  padding: 0.5rem 1rem;
+  background-color: var(--primary-color);
+  color: black;
+  margin: 1rem 0;
+  font-size: 0.8rem;
+  
+}
+
+.alert p{
+  margin: 0;
+}
+
+.alert .close {
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.close {
+  margin: auto 1rem;
+  justify-self: right;
+}
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;
