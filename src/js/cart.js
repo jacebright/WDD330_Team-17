@@ -1,4 +1,4 @@
-import { loadHeaderFooter } from "./utils.mjs";
+import { loadHeaderFooter, renderBreadcrumbs } from "./utils.mjs";
 import ShoppingCart from "./ShoppingCart.mjs";
 
 const cart = new ShoppingCart("so-cart", ".product-list");
@@ -14,3 +14,6 @@ if (prodUl.children.length > 0) {
 }
 
 loadHeaderFooter();
+
+const pageCont = "cart";
+renderBreadcrumbs(pageCont);

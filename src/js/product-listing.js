@@ -1,6 +1,6 @@
 import ExternalServices from "./ExternalServices.mjs";
 import ProductList from "./ProductListing.mjs";
-import { loadHeaderFooter, getParam } from "./utils.mjs";
+import { loadHeaderFooter, getParam, renderBreadcrumbs } from "./utils.mjs";
 
 loadHeaderFooter();
 
@@ -15,3 +15,6 @@ const myList = new ProductList(category, dataSource, listElement);
 myList.init();
 
 document.getElementsByClassName("title")[0].innerHTML = category;
+
+const pageCont = "product-list";
+renderBreadcrumbs(pageCont, category);

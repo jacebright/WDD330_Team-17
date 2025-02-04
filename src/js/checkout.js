@@ -1,4 +1,4 @@
-import { alertMessage, loadHeaderFooter } from "./utils.mjs";
+import { alertMessage, loadHeaderFooter, renderBreadcrumbs } from "./utils.mjs";
 import CheckoutProcess from "./CheckoutProcess.mjs";
 
 loadHeaderFooter();
@@ -25,7 +25,7 @@ document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
   const expiration = document.querySelector('#expiration').value;
 
   const validCardNumber = /^[0-9]{16}$/.test(cardNumber);
-  const validExpiration = /^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(expiration);
+  const validExpiration = /^(0[1-9]|1[0-2])\/([0-9]{2})$/.test(expiration);;
 
   // Clear any existing alerts first
   const existingAlerts = document.querySelectorAll('.alert');
@@ -42,9 +42,11 @@ document.querySelector("#checkoutSubmit").addEventListener("click", (e) => {
   if(methodValid && validCardNumber && validExpiration) {
     myCheckout.checkout();
   }  
-
   
 });
+
+const pageCont = "checkout";
+renderBreadcrumbs(pageCont);
 
 
 

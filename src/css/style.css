@@ -233,6 +233,28 @@ button {
   justify-self: right;
 }
 
+
+/* breadcrumbs styling */
+.breadcrumb{
+  margin: 1rem;
+  font-size: 0.9rem;
+}
+
+.breadcrumb a {
+  color: rgb(82, 82, 82);
+  text-decoration: none;
+  margin: auto 2px;
+}
+
+.breadcrumb a:hover{
+  text-decoration: underline;
+}
+
+.home .breadcrumb{
+  display: none;
+}
+
+
 @media screen and (min-width: 500px) {
   body {
     max-width: 1080px;

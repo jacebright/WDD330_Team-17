@@ -109,3 +109,34 @@ export async function alertMessage(message, scroll=true) {
 
 }
 
+
+export function renderBreadcrumbs (pageContent, category, productName = null, count = null) {
+  const breadElement = document.getElementById('breadcrumb');
+  let breadcrumbHTML = '';
+
+  if (!breadElement){
+    console.error('Breadcrumb element not found');
+    return;
+}
+
+  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    breadElement.style.display = 'none';
+    return;
+  }
+
+  const categ = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+
+  if (pageContent === 'product-list') {
+    breadcrumbHTML = `<a href='../index.html'>Home</a> | <a>${categ}</a>`;
+  } else if (pageContent === 'checkout') {
+    breadcrumbHTML = `<a href='../index.html'>Home</a> | <a href = '../cart/index.html' >Cart</a> | <a>Checkout</a>`;
+  } else if (pageContent ==='cart') {
+    breadcrumbHTML = `<a href='../index.html'>Home</a> | Cart`;
+  } else if (pageContent === 'product-page') {  
+    breadcrumbHTML = `<a href='../index.html'>Home</a> | <a href='../product-listing/index.html?category=${category}' >${categ}</a> | <a>${productName}</a>`;
+  }
+  
+  breadElement.innerHTML = breadcrumbHTML;
+
+}
+

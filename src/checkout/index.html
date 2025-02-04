@@ -14,6 +14,7 @@
 
   <body>
     <header class="divider" id="page-header"></header>
+    <div class="breadcrumb" id="breadcrumb"></div>
 
     <main class="divider">
       <section class="products">
@@ -43,11 +44,11 @@
         <fieldset>
           <legend>Payment</legend>
           <label>
-            Credit Card Number:<input type="text" name="cardNumber" id="cardNumber" required pattern="[0-9]{16}" title="Please enter a valid card number"
+            Credit Card Number:<input type="text" name="cardNumber" id="cardNumber" required title="Please enter a valid card number"
           /></label>
 
           <label
-            >Expiration Date:<input type="text" name="expiration" id="expiration" required pattern="Please enter a valid expiration date (MM/YY)"
+            >Expiration Date:<input type="text" name="expiration" id="expiration" required title="Please enter a valid expiration date (MM/YY)"
           /></label>
 
           <label

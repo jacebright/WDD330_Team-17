@@ -26,6 +26,8 @@ export default class ProductList {
     const list = await this.dataSource.getData(this.category);
 
     const filteredList = list.filter((tent) => tent.Id != "989CG" && tent.Id != "880RT");
+
+    
     // render the list
     this.renderList(filteredList);
   }
@@ -33,4 +35,5 @@ export default class ProductList {
   renderList(list) {
     renderListWithTemplate(productCardTemplate, this.listElement, list);
   }
+
 }
