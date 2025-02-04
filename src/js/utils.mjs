@@ -110,7 +110,7 @@ export async function alertMessage(message, scroll=true) {
 }
 
 
-export function renderBreadcrumbs (pageContent, category, productName = null, count = null) {
+export function renderBreadcrumbs (pageContent, category=null, productName = null, count = null) {
   const breadElement = document.getElementById('breadcrumb');
   let breadcrumbHTML = '';
 
@@ -124,15 +124,17 @@ export function renderBreadcrumbs (pageContent, category, productName = null, co
     return;
   }
 
-  const categ = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
-
+/*   const categ = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
+ */
   if (pageContent === 'product-list') {
+    const categ = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
     breadcrumbHTML = `<a href='../index.html'>Home</a> | <a>${categ}</a>`;
   } else if (pageContent === 'checkout') {
     breadcrumbHTML = `<a href='../index.html'>Home</a> | <a href = '../cart/index.html' >Cart</a> | <a>Checkout</a>`;
   } else if (pageContent ==='cart') {
     breadcrumbHTML = `<a href='../index.html'>Home</a> | Cart`;
   } else if (pageContent === 'product-page') {  
+    const categ = category.charAt(0).toUpperCase() + category.slice(1).toLowerCase();
     breadcrumbHTML = `<a href='../index.html'>Home</a> | <a href='../product-listing/index.html?category=${category}' >${categ}</a> | <a>${productName}</a>`;
   }
   
