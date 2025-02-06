@@ -12,7 +12,8 @@ function cartItemTemplate(item, x) {
   <a href="#">
     <h2 class="card__name">${item.Name}</h2>
   </a>
-  <span class="cart-card__remove" data-id="${item.Id}">❌</span>
+  <span class="cart-card__add" data-id="${item.Id}">➕</span>
+  <span class="cart-card__remove" data-id="${item.Id}">➖</span>
   <p class="cart-card__color">${item.Colors[0].ColorName}</p>
   <p class="cart-card__quantity">qty:${x}</p>
   <p class="cart-card__price">$${item.FinalPrice}</p>
@@ -38,7 +39,7 @@ export default class ShoppingCart {
       });
     }
 
-   }
+  }
 
 
   renderCartContents() {
@@ -53,8 +54,8 @@ export default class ShoppingCart {
         countOfEachArrayValue[value.Id] = currentCountForValue + 1;
       });
       const key = "Id";
-      const unique = [...new Map(cartItems.map(item =>[item[key], item])).values()];
-      htmlItems = unique.map((item) => cartItemTemplate(item,countOfEachArrayValue[item.Id]));
+      const unique = [...new Map(cartItems.map(item => [item[key], item])).values()];
+      htmlItems = unique.map((item) => cartItemTemplate(item, countOfEachArrayValue[item.Id]));
       cartItems.forEach(element => {
         this.total += element.FinalPrice;
       });
@@ -62,26 +63,26 @@ export default class ShoppingCart {
     document.querySelector(this.parentSelector).innerHTML = htmlItems.join("");
 
     const removeBtns = document.querySelectorAll(".cart-card__remove");
-    removeBtns.forEach((btn)=>{
-      btn.addEventListener("click",()=>{
-        
+    removeBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+
         const productId = btn.getAttribute("data-id");
         const items = getLocalStorage(this.storageKey);
-        
+
         //Find index of item in list
-        const ids = items.map((item)=>item.Id)
+        const ids = items.map((item) => item.Id)
         const index = ids.indexOf(productId);
 
         //remove item from list and save list
-        items.splice(index,1);
-        localStorage.setItem(this.storageKey,JSON.stringify(items))
-        
+        items.splice(index, 1);
+        localStorage.setItem(this.storageKey, JSON.stringify(items))
+
         //Rerender List
         this.renderCartContents();
         updateCartSuperscript();
-        
+
         //Update Cart Total
-        if (items.length > 0) 
+        if (items.length > 0)
           document.getElementsByClassName("cart-total")[0].innerHTML = `Total: $${this.total.toFixed(2)}`;
         else {
           document.querySelector(".cart-footer").classList.add("hide");
@@ -89,7 +90,36 @@ export default class ShoppingCart {
         }
       })
     })
-}
+
+    const addBtns = document.querySelectorAll(".cart-card__add");
+    addBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+
+        const productId = btn.getAttribute("data-id");
+        const items = getLocalStorage(this.storageKey);
+
+        //Find index of item in list
+        const ids = items.map((item) => item.Id)
+        const index = ids.indexOf(productId);
+
+        //add item to list and save list
+        items.splice(index, 0, items[0]);
+        localStorage.setItem(this.storageKey, JSON.stringify(items))
+
+        //Rerender List
+        this.renderCartContents();
+        updateCartSuperscript();
+
+        //Update Cart Total
+        if (items.length > 0)
+          document.getElementsByClassName("cart-total")[0].innerHTML = `Total: $${this.total.toFixed(2)}`;
+        else {
+          document.querySelector(".cart-footer").classList.add("hide");
+          document.querySelector(".empty").classList.remove("hide");
+        }
+      })
+    })
+  }
 
   tax() {
     return (this.total * 0.06).toFixed(2);
@@ -111,7 +141,7 @@ export default class ShoppingCart {
 
   }
 
-  
+
 
 
 }
