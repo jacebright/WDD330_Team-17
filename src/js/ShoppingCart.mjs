@@ -103,7 +103,7 @@ export default class ShoppingCart {
         const index = ids.indexOf(productId);
 
         //add item to list and save list
-        items.splice(index, 0, items[0]);
+        items.splice(index, 0, items[index]);
         localStorage.setItem(this.storageKey, JSON.stringify(items))
 
         //Rerender List
