@@ -1,14 +1,16 @@
-import { setLocalStorage } from "./utils.mjs";
+import { setLocalStorage, updateCartSuperscript } from "./utils.mjs";
 
 function productDetailsTemplate(product) {
   return `<section class="product-detail"><h3>${product.Brand.Name}</h3>
             <h2 class="divider">${product.NameWithoutBrand}</h2>
 
             <img class="divider"
-                src="${product.Image}"
+                src="${product.Images.PrimaryLarge}"
                 alt="${product.NameWithoutBrand}" />
 
-            <p class="product-card__price">${product.FinalPrice}</p>
+            <p class="product-card__price">Original Price: <s>$${product.SuggestedRetailPrice}</s></p>
+
+            <h2 class="product-card__price">Actual Price: $${product.FinalPrice}</h2>
 
             <p class="product__color">${product.Colors[0].ColorName}</p>
 
@@ -36,11 +38,28 @@ export default class ProductDetails {
     // Notice the .bind(this). Our callback will not work if we don't include that line. Review the readings from this week on 'this' to understand why.
     document
       .getElementById("addToCart")
-      .addEventListener("click", this.addToCart.bind(this));
+      .addEventListener("click",this.addToCart.bind(this));
+      document
+      .getElementById("addToCart")
+      .addEventListener("click",()=>{
+        const cart = document.querySelector(".cart");
+        const growShrink = [
+          { transform: "scale(1)" },
+          { transform: "scale(2)" },
+          { transform: "scale(1)" },
+        ];
+        const growShrinkTime = {
+          duration: 2000,
+          iterations: 1,
+        };
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        cart.animate(growShrink, growShrinkTime);
+      });
     }
 
   addToCart() {
     setLocalStorage("so-cart", this.product)
+    updateCartSuperscript();
   }
 
   addProductToCart(product) {
@@ -52,3 +71,5 @@ export default class ProductDetails {
     element.innerHTML = productDetailsTemplate(this.product);
   }
 }
+
+
