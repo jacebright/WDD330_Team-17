@@ -15,3 +15,10 @@ const myList = new ProductList(category, dataSource, listElement);
 myList.init();
 
 document.getElementsByClassName("title")[0].innerHTML = category;
+
+document.getElementById("sortPrice").addEventListener("click", () => {
+  myList.sortByPrice();
+});
+document.getElementById("sortName").addEventListener("click", () => {
+  myList.sortByName();
+});
