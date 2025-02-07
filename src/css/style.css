@@ -85,7 +85,7 @@ header {
   margin-top: -1.3em;
 }
 
-.logo--square>div {
+.logo--square > div {
   margin-top: -1.7em;
 }
 
@@ -276,7 +276,6 @@ figure {
   text-align: center;
 }
 
-
 /* cart superscript */
 #cartSuper {
   text-decoration: none;
@@ -301,12 +300,11 @@ figure {
   border: 1px solid darkorange;
 }
 
-.alert>p {
+.alert > p {
   margin: 0;
 }
 
 /* empty cart style */
 .empty h2 {
   text-align: center;
-
 }
