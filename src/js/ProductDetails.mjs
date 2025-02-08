@@ -52,7 +52,7 @@ export default class ProductDetails {
           duration: 2000,
           iterations: 1,
         };
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
         cart.animate(growShrink, growShrinkTime);
       });
     }
